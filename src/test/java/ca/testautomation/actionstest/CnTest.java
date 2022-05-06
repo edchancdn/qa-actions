@@ -33,23 +33,23 @@ public class CnTest {
 
     @Test
     public void tc1() {
-        WebElement service = driver.findElement(By.id("ctl06__10941b240573643_repMainNav_topLevelLink_1"));
-        WebElement trucking = driver.findElement(By.id("ctl06__10941b240573643_repMainNav_repSecondLevel_1_secondLevelLink_2"));
-        WebElement express = driver.findElement(By.id("ctl06__10941b240573643_repMainNav_repSecondLevel_1_repThirdLevel_2_thirdLevelLink_1"));
-        WebElement jobAid = driver.findElement(By.id("ctl06__10941b240573643_repMainNav_repSecondLevel_1_repThirdLevel_2_repFourthLevel_1_fourthLevelLink_0"));
+        WebElement service = driver.findElement(By.cssSelector("div>a[href='/en/our-services/'][class='topLevelLink']"));
+        WebElement trucking = driver.findElement(By.cssSelector("li>a[href='/en/our-services/trucking/'][class='secondlevellink']"));
+        WebElement express = driver.findElement(By.cssSelector("li>a[href='/en/our-services/trucking/cn-express-pass/'][class='thirdlevellink']"));
+        WebElement jobAid = driver.findElement(By.cssSelector("li>a[href='/en/our-services/trucking/cn-express-pass/job-aid-gallery/'][class='fourthlevellink']"));
 
-        actions.moveToElement(service).pause(1000)
-                .moveToElement(trucking).pause(1000)
-                .moveToElement(express).pause(1000)
-                .moveToElement(jobAid)
-                .click().build().perform();
+        // increase pause duration if getting element not interactable exception on mouseover
+        actions.moveToElement(service).pause(2000).build().perform();
+        actions.moveToElement(trucking).pause(1000).build().perform();
+        actions.moveToElement(express).pause(1000).build().perform();
+        actions.moveToElement(jobAid).pause(1000).click().build().perform();
 
         Assert.assertEquals(driver.getTitle(), "Job Aid Gallery | cn.ca");
     }
 
     @Test
     public void tc2() {
-        WebElement service = driver.findElement(By.id("ctl06__10941b240573643_repMainNav_topLevelLink_1"));
+        WebElement service = driver.findElement(By.cssSelector("div>a[href='/en/our-services/'][class='topLevelLink']"));
 
         // Opens the service page on a new tab
         // .pause(3000) is an inline alternative to a separate line of Thread.sleep(3000)
@@ -61,7 +61,7 @@ public class CnTest {
     @Test
     public void tc3() {
         // web element exists in DOM
-        WebElement jobAid = driver.findElement(By.id("ctl06__10941b240573643_repMainNav_repSecondLevel_1_repThirdLevel_2_repFourthLevel_1_fourthLevelLink_0"));
+        WebElement jobAid = driver.findElement(By.cssSelector("li>a[href='/en/our-services/trucking/cn-express-pass/job-aid-gallery/'][class='fourthlevellink']"));
 
         // but if isDisplayed is false, then WebDriver may not be able to interact with the web element.
         Assert.assertFalse(jobAid.isDisplayed());
