@@ -39,10 +39,11 @@ public class CnTest {
         WebElement jobAid = driver.findElement(By.cssSelector("li>a[href='/en/our-services/trucking/cn-express-pass/job-aid-gallery/'][class='fourthlevellink']"));
 
         // increase pause duration if getting element not interactable exception on mouseover
-        actions.moveToElement(service).pause(2000).build().perform();
-        actions.moveToElement(trucking).pause(1000).build().perform();
-        actions.moveToElement(express).pause(1000).build().perform();
-        actions.moveToElement(jobAid).pause(1000).click().build().perform();
+        actions.moveToElement(service).pause(2000)
+                .moveToElement(trucking).pause(1000)
+                .moveToElement(express).pause(1000)
+                .moveToElement(jobAid).pause(1000)
+                .click().build().perform();
 
         Assert.assertEquals(driver.getTitle(), "Job Aid Gallery | cn.ca");
     }
