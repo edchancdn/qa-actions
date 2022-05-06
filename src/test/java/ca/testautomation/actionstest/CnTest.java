@@ -33,6 +33,7 @@ public class CnTest {
 
     @Test
     public void tc1() {
+        // don't use id as a locator, as this site implements dynamic id
         WebElement service = driver.findElement(By.cssSelector("div>a[href='/en/our-services/'][class='topLevelLink']"));
         WebElement trucking = driver.findElement(By.cssSelector("li>a[href='/en/our-services/trucking/'][class='secondlevellink']"));
         WebElement express = driver.findElement(By.cssSelector("li>a[href='/en/our-services/trucking/cn-express-pass/'][class='thirdlevellink']"));
